@@ -18,6 +18,7 @@ class Walker{
         
     myX = (int)(myX + (Math.random()*5)+modX);
     myY = (int)(myY + (Math.random()*5)+modY);
+    
     if(myX > width){
     myX = 0;
     }
@@ -33,7 +34,7 @@ class Walker{
   }
   void show(){
   if(alive == true){
-  fill(255,255,255);
+  fill((int)(Math.random()*myX)+124,255-(int)(Math.random()*myX), (int)(Math.random()*myY));
   ellipse((int)myX, (int)myY, 10,10);
   }else{
   fill(0,0,0);
@@ -66,7 +67,7 @@ class Walker{
       if(modY < -2.5){
         modY = -2.5;
       }
-      println(modX);
+      
      }
    }
   
@@ -76,12 +77,12 @@ class Walker{
   }
 }
 
-Walker bob;
+
 Walker [] army;
 void setup(){
   
   size(500,500);
-  bob = new Walker();
+  
   army = new Walker[500]; 
   life = new boolean[500];
   for(int i = 0; i < army.length; i++){
@@ -95,8 +96,7 @@ void setup(){
 
 void draw(){
   background(0,0,0);
-  //bob.walk();
-  bob.show();
+  
   for(int i = 0; i < army.length; i++){
     army[i].walk();
     army[i].show();
@@ -110,15 +110,15 @@ int a = (int)(Math.random()*(army.length));
 while(army[a].alive == false){
 a = (int)(Math.random()*(army.length));  
 }
-strokeWeight(2);
+strokeWeight(10);
 stroke(255,0,0);
-line(mouseX, mouseY, army[a].myX, army[a].myY);
+line(250,450, army[a].myX, army[a].myY);
 stroke(0,0,0);
 fill(0,0,0);
 strokeWeight(1);
 army[a].die();
 for(int i = 0; i < army.length; i++){
-army[i].run(mouseX, mouseY);
+army[i].run(army[a].myX, army[a].myY);
 }
 
 }

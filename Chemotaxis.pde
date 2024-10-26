@@ -1,5 +1,7 @@
 boolean [] life;
 int runX, runY;
+int a = 0;
+int lasertime = 0;
 class Walker{
    int myX, myY;
    boolean alive;
@@ -95,27 +97,29 @@ void setup(){
 
 
 void draw(){
-  background(0,0,0);
   
+  background(0,0,0);
+  if(lasertime > 0){
+  strokeWeight(4);
+  stroke(255,0,0);
+  line(mouseX,mouseY, army[a].myX, army[a].myY);
+  ellipse(army[a].myX,army[a].myY,10-lasertime/3,10-lasertime/3);
+  stroke(0,0,0);
+  strokeWeight(1);
+  lasertime--;
+  }
   for(int i = 0; i < army.length; i++){
     army[i].walk();
     army[i].show();
   }
-
+ 
 }
 
 void mouseClicked(){
-
-int a = (int)(Math.random()*(army.length)); 
 while(army[a].alive == false){
 a = (int)(Math.random()*(army.length));  
 }
-strokeWeight(10);
-stroke(255,0,0);
-line(250,450, army[a].myX, army[a].myY);
-stroke(0,0,0);
-fill(0,0,0);
-strokeWeight(1);
+lasertime = 30;
 army[a].die();
 for(int i = 0; i < army.length; i++){
 army[i].run(army[a].myX, army[a].myY);

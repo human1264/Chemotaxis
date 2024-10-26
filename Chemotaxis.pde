@@ -1,4 +1,4 @@
- boolean [] life;
+boolean [] life;
 int runX, runY;
 class Walker{
    int myX, myY;
@@ -112,7 +112,7 @@ a = (int)(Math.random()*(army.length));
 }
 strokeWeight(10);
 stroke(255,0,0);
-line(250,500, army[a].myX, army[a].myY);
+line(250,450, army[a].myX, army[a].myY);
 stroke(0,0,0);
 fill(0,0,0);
 strokeWeight(1);
